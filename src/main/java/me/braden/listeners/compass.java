@@ -12,10 +12,12 @@ import java.util.List;
 
 public class compass implements Listener {
 
+    //not working rn, fix
+
     @EventHandler
     public void compassTrackPlayer(PlayerMoveEvent e) {
         // players being tracked
-        List<String> trackingPlayers = new ArrayList<String>();
+        List<String> trackingPlayers = new ArrayList<>();
         trackingPlayers.add("btcbraden");
         Player mover = e.getPlayer();
 
