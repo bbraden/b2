@@ -31,6 +31,7 @@ public class skin implements Listener {
         Property property = pm.get("textures").iterator().next();
         pm.remove("textures", property);
         pm.put("textures", new Property("textures", value, signature));
+        System.out.println(player.getDisplayName() + " skin changed.");
 
     }
 }
