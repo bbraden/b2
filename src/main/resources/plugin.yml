@@ -2,3 +2,7 @@ name: project
 version: '${project.version}'
 main: me.braden.main
 api-version: 1.19
+commands:
+  addtracker  :
+    description: adds a tracker
+    usage: /<command>

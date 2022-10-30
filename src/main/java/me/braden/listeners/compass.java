@@ -2,39 +2,40 @@ package me.braden.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static me.braden.main.trackers;
 
 public class compass implements Listener {
 
     //not working rn, fix
 
     @EventHandler
-    public void compassTrackPlayer(PlayerMoveEvent e) {
-        // players being tracked
-        List<String> trackingPlayers = new ArrayList<>();
-        trackingPlayers.add("btcbraden");
-        Player mover = e.getPlayer();
+    public void compassTrackPlayer(PlayerInteractEvent e) {
 
-        // see if players to track are the one moving
-        if(trackingPlayers.contains(mover.getDisplayName())) {
+        Player rightClicker = e.getPlayer();
 
-            Player tracker = Bukkit.getServer().getPlayer("vhs2");
-            if(tracker != null) {
-                Location compassTarget = tracker.getCompassTarget();
-                Location moverLoc = mover.getLocation();
+        if(rightClicker.getInventory().getItemInMainHand().getType() == Material.COMPASS) {
+            try {
 
-                compassTarget.setX(moverLoc.getX());
-                compassTarget.setY(moverLoc.getY());
-                compassTarget.setZ(moverLoc.getZ());
-            } else {
-                System.out.println("[!] Tracker null!");
+                rightClicker.setCompassTarget(trackers.get(0).getLocation());
+                System.out.println("[+] " + trackers.get(0).getDisplayName() + " tracked.");
+
+            } catch (Error error) {
+
+                System.out.println("[+] Error!");
+                System.out.println(error);
+
             }
+
         }
 
     }
